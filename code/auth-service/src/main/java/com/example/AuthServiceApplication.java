@@ -46,9 +46,12 @@ public class AuthServiceApplication {
 					p.getAuthorities().stream().map(x -> x.getAuthority()).collect(Collectors.joining(":")));
 			return map;
 		}
-
 	}
 
+	/**
+	 * Service that take username and find user in ldap/database or some user
+	 * store, to get user details.
+	 */
 	@Service
 	class AccountUserDetailsService implements UserDetailsService {
 
@@ -57,7 +60,7 @@ public class AuthServiceApplication {
 			// @formatter:off
 			return new User("jifa", "password", true, true, true, true,
 					        AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")); 
-            // @formatter:on
+			// @formatter:on
 		}
 	}
 
@@ -78,14 +81,13 @@ public class AuthServiceApplication {
 			    .scopes("openid")
 			    .autoApprove(true)
 			    .authorizedGrantTypes("authorization_code", "refresh_token", "password");
-            // @formatter:on
+			// @formatter:on
 		}
 
 		@Override
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 			endpoints.authenticationManager(this.authenticationManager);
 		}
-
 	}
 
 }

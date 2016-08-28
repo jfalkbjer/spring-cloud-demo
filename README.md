@@ -2,12 +2,15 @@
 
 Sample projects to demo Spring Cloud Native applications with Spring Boot.
 
+
 ## Notes
+
 All projects set the `logging.file` property in the property file like this:
 ```
 logging.file=/${user.home}/log-dir/${spring.application.name}-${server.port}.log
 ```
 This means that if you want it to work on your environment, you must have a directory named `log-dir` in your $HOME directory, or change the value of the `logging.file` property.
+
 
 ## Running with curl
 
@@ -45,3 +48,26 @@ Use https in the curl call. Use -k to skip verification of the certificate, sinc
 curl -v https://localhost:8080/api/greet -H "Authorization: Bearer <access_token>" -k
 {"greeting":"Hello World!"}
 ```
+
+
+## Service URLs
+
+Eureka Service (Service Discovery)
+http://localhost:8761/
+
+Zipkin Service (Distributed tracing)
+http://localhost:9411/
+
+
+## Misc
+
+Starting Spring Boot application from prompt
+```
+mvn spring-boot:run -DPORT=xxxx
+```
+
+Check process id that uses a specific port
+```
+lsof -i :xxxx
+```
+

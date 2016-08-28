@@ -53,10 +53,10 @@ curl -v https://localhost:8080/api/greet -H "Authorization: Bearer <access_token
 ## Service URLs
 
 Eureka Service (Service Discovery)
-http://localhost:8761/
+<http://localhost:8761/>
 
 Zipkin Service (Distributed tracing)
-http://localhost:9411/
+<http://localhost:9411/>
 
 
 ## Misc

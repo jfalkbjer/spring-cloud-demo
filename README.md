@@ -49,6 +49,24 @@ curl -v https://localhost:8080/api/greet -H "Authorization: Bearer <access_token
 {"greeting":"Hello World!"}
 ```
 
+Refresh components with @RefreshScope
+```
+curl -X POST http://<hostname:port>/refresh
+```
+
+
+## Creat a git repository for config server
+
+```
+$ cd $HOME
+$ mkdir config-repo
+$ cd config-repo
+$ git init .
+$ echo some.property=value > application.properties
+$ git add -A .
+$ git commit -m "Added application.properties"
+```
+
 
 ## Service URLs
 
@@ -57,6 +75,22 @@ Eureka Service (Service Discovery)
 
 Zipkin Service (Distributed tracing)
 <http://localhost:9411/>
+
+
+## Use Spring Boot Developer Tools
+
+Add dependency below to get automatic restart of Spring Boot application:
+```
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+</dependencies>
+```
+
+See <http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html> for more information.
 
 
 ## Misc

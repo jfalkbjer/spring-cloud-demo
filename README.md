@@ -26,9 +26,9 @@ curl -v http://localhost:9191/user -H "Authorization: Bearer <access_token>"
 {"name":"jifa","authorities":"ROLE_ADMIN:ROLE_USER"}
 ```
 
-Use the greeting-client with the token:
+Using the greeting-client with HTTPS and token. Use -k to skip verification of the certificate, since we have a self-signed certificate:
 ```
-curl -v http://localhost:8080/api/greet -H "Authorization: Bearer <access_token>"
+curl -v https://localhost:8080/api/greet -H "Authorization: Bearer <access_token>" -k
 {"greeting":"Hello World!"}
 ```
 
@@ -38,24 +38,20 @@ curl -v http://localhost:9191/oauth/revoke-token -H "Authorization: Bearer <acce
 {"greeting":"Hello World!"}
 ```
 
-If you configure https:
-```
-keytool -genkey -alias greetings-client -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
-```
-
-Use https in the curl call. Use -k to skip verification of the certificate, since we have a self-signed certificate.
-```
-curl -v https://localhost:8080/api/greet -H "Authorization: Bearer <access_token>" -k
-{"greeting":"Hello World!"}
-```
-
 Refresh components with @RefreshScope
 ```
 curl -X POST http://<hostname:port>/refresh
 ```
 
 
-## Creat a git repository for config server
+## Create self-signed certificate:
+
+```
+keytool -genkey -alias greetings-client -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+```
+ 
+
+## Create a git repository for config server
 
 ```
 $ cd $HOME
@@ -104,4 +100,3 @@ Check process id that uses a specific port
 ```
 lsof -i :xxxx
 ```
-

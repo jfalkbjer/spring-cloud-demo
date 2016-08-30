@@ -100,3 +100,8 @@ Check process id that uses a specific port
 ```
 lsof -i :xxxx
 ```
+
+Generate traffic to a service:
+```
+while true; do curl http://localhost:8090/greet; echo; sleep .5; done
+```
